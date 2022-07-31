@@ -4,16 +4,31 @@ import Footer from "./Footer";
 import Body from "./Body";
 import { getInitialData } from "../utils/index";
 
-function NoteApp() {
-  const notes = getInitialData();
+class NoteApp extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <>
-      <Header />
-      <Body notes={notes} />
-      <Footer />
-    </>
-  );
+    this.state = {
+      notes: getInitialData(),
+    };
+
+    this.onDeleteHandler = this.onDeleteHandler.bind(this);
+  }
+
+  onDeleteHandler(id) {
+    const notes = this.state.notes.filter((note) => note.id !== id);
+    this.setState({ notes });
+  }
+
+  render() {
+    return (
+      <>
+        <Header />
+        <Body notes={this.state.notes} onDelete={this.onDeleteHandler} />
+        <Footer />
+      </>
+    );
+  }
 }
 
 export default NoteApp;

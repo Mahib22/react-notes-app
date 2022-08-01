@@ -10,11 +10,13 @@ class NoteApp extends React.Component {
 
     this.state = {
       notes: getInitialData(),
+      searchTitle: "",
     };
 
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
     this.onArchiveHandler = this.onArchiveHandler.bind(this);
     this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
+    this.onSearchTitleChange = this.onSearchTitleChange.bind(this);
   }
 
   onDeleteHandler(id) {
@@ -46,6 +48,14 @@ class NoteApp extends React.Component {
     });
   }
 
+  onSearchTitleChange(e) {
+    this.setState(() => {
+      return {
+        searchTitle: e.target.value,
+      };
+    });
+  }
+
   render() {
     const activeNotes = this.state.notes.filter((note) => {
       return note.archived === false;
@@ -63,6 +73,8 @@ class NoteApp extends React.Component {
           onDelete={this.onDeleteHandler}
           onArchive={this.onArchiveHandler}
           addNote={this.onAddNoteHandler}
+          searchTitle={this.state.searchTitle}
+          onSearchTitleChange={this.onSearchTitleChange}
         />
         <Footer />
       </>

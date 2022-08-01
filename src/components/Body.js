@@ -1,7 +1,9 @@
 import React from "react";
+import EmptyText from "./EmptyText";
 import NoteInput from "./NoteInput";
 import NoteList from "./NoteList";
 import SearchInput from "./SearchInput";
+import SectionTitle from "./SectionTitle";
 
 function Body({
   activeNotes,
@@ -15,7 +17,7 @@ function Body({
   return (
     <section className="container px-5 py-6 mx-auto">
       <div className="lg:w-2/5 md:w-2/4 mx-auto">
-        <h1 className="lg:text-2xl text-center font-bold mb-3 text-gray-900">
+        <h1 className="text-2xl text-center font-bold mb-3 text-gray-900">
           Buat Catatan
         </h1>
         <NoteInput addNote={addNote} />
@@ -23,9 +25,8 @@ function Body({
 
       <div className="lg:w-4/5 mx-auto mt-8">
         <div className="flex justify-between items-center">
-          <h1 className="lg:text-2xl font-bold mb-3 text-gray-900">
-            Daftar Catatan
-          </h1>
+          <SectionTitle title={"Daftar Catatan"} />
+
           <SearchInput
             searchTitle={searchTitle}
             onSearchTitleChange={onSearchTitleChange}
@@ -40,15 +41,13 @@ function Body({
             searchTitle={searchTitle}
           />
         ) : (
-          <h1 className="text-center text-gray-500 mt-2">Tidak ada catatan</h1>
+          <EmptyText />
         )}
       </div>
 
       <div className="lg:w-4/5 mx-auto mt-8">
         <div className="flex justify-between items-center">
-          <h1 className="lg:text-2xl font-bold mb-3 text-gray-900">
-            Arsip Catatan
-          </h1>
+          <SectionTitle title={"Arsip Catatan"} />
         </div>
 
         {archivedNotes.length !== 0 ? (
@@ -59,7 +58,7 @@ function Body({
             searchTitle={searchTitle}
           />
         ) : (
-          <h1 className="text-center text-gray-500 mt-2">Tidak ada catatan</h1>
+          <EmptyText />
         )}
       </div>
     </section>

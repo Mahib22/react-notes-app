@@ -3,10 +3,15 @@ import NoteInput from "./NoteInput";
 import NoteList from "./NoteList";
 import SearchInput from "./SearchInput";
 
-function Body({ notes, onDelete }) {
+function Body({ notes, onDelete, addNote }) {
   return (
     <section className="container px-5 py-6 mx-auto">
-      <NoteInput />
+      <div className="lg:w-2/5 md:w-2/4 mx-auto">
+        <h1 className="text-2xl text-center font-bold mb-3 text-gray-900">
+          Buat Catatan
+        </h1>
+        <NoteInput addNote={addNote} />
+      </div>
 
       <div className="lg:w-4/5 mx-auto mt-8">
         <div className="flex justify-between items-center">
